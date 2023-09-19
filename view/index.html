@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css">
+        .jumbotron {
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            background-color: var(--bs-light);
+            border-radius: .3rem;
+        }
+    </style>
+    <script>
+        var socket = io();
+        socket.on('connect', function() {
+            console.log('browser client connected')
+        });
+
+        socket.on('success', function(res) {
+            window.location.href = res.auth;
+        });
+
+        function authorizeApplication(event) {
+            window.location.href = '/authorize';
+        }
+    </script>
+</head>
+<body class="d-flex flex-column h-100">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Device authorization flow sample app.</h1>
+            <p>The sample app is using <a href="https://www.npmjs.com/package/ibm-verify-sdk" title="IBM Verify Javascript SDK" target="_blank">IBM Verify Javascript SDK</a></p>
+        </div>
+    </div>
+    <div class="main flex-shrink-0 mb-5">
+        <!-- Content from your Pug block goes here -->
+    </div>
+    <footer class="mt-auto py-3 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="mb-0">Visit the IBM Security Verify Documentation Hub for more information about the Device authorization flow <a href="https://docs.verify.ibm.com/verify/docs/device-authorization-example" title="IBM Security Verify device authorization flow" target="_blank">sample app</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
